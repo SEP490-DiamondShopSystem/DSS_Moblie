@@ -19,8 +19,8 @@ export const login = createAsyncThunk(
 
       return data;
     } catch (error) {
-      console.error(JSON.stringify(error));
-      return rejectWithValue(error);
+      console.error(JSON.stringify(error.data));
+      return rejectWithValue(error.data);
     }
   }
 );
@@ -123,7 +123,7 @@ export const userSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.loading = false;
         state.userInfo = action.payload;
-        AsyncStorage.setItem("accessToken", action.payload.accessToken);
+        AsyncStorage.setItem("accessToken", action.payload.data.accessToken);
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
