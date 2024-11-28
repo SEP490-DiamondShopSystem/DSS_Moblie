@@ -1,20 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StatusBar } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./redux/store";
+import { PaperProvider } from "react-native-paper";
+import StackNavigator from "./stack/StackNavigator";
+import { NavigationContainer } from "@react-navigation/native";
+import { MenuProvider } from "react-native-popup-menu"; // Thêm import
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const App = () => (
+  <SafeAreaProvider>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <PaperProvider>
+          <MenuProvider>
+            <StatusBar barStyle="light-content" backgroundColor={"#dec986"} />
+            <NavigationContainer>
+              <StackNavigator />
+            </NavigationContainer>
+          </MenuProvider>
+        </PaperProvider>
+      </PersistGate>
+    </Provider>
+  </SafeAreaProvider>
+);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
