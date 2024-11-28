@@ -4,6 +4,7 @@ import React from "react";
 import LoginScreen from "../screens/LoginScreen";
 import BottomTabNavigator from "../tabs/BottomTabNavigator";
 import OrderScreen from "../screens/OrderScreen/OrderScreen";
+import TrackOrderScreen from "../screens/OrderScreen/OrderDetail.jsx/TrackOrderScreen";
 
 // Import screen components
 
@@ -25,13 +26,16 @@ const StackNavigator = () => (
       }}
       component={LoginScreen}
     />
-    {/* <Stack.Screen
-      name="OrderScreen"
+    <Stack.Screen
+      name="TrackOrderScreen"
       options={{
-        headerShown: false,
+        headerShown: true,
+        headerTitle: "Chi Tiết Đơn Hàng",
+        tabBarLabel: "Đơn Hàng",
+        headerTitleAlign: "center",
       }}
-      component={OrderScreen}
-    /> */}
+      component={TrackOrderScreen}
+    />
     <Stack.Screen
       name="BottomTabNavigator"
       options={{

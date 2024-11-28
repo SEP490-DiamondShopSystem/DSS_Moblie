@@ -11,7 +11,7 @@ import {
 import { useDispatch } from "react-redux";
 import { getAllOrder } from "../../redux/slices/orderSlice";
 
-const OrderScreen = () => {
+const OrderScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const [orderList, setOrderList] = useState([]);
 
@@ -42,10 +42,7 @@ const OrderScreen = () => {
   }, [dispatch]);
 
   const handleViewDetails = (orderID) => {
-    Alert.alert(
-      "Chi Tiết Đơn Hàng",
-      `Thông tin chi tiết của đơn hàng ${orderID}`
-    );
+    navigation.navigate("TrackOrderScreen", { orderID });
   };
 
   const getStatusDetails = (statusValue) => {
@@ -80,7 +77,7 @@ const OrderScreen = () => {
           />
         </View> */}
         <TouchableOpacity
-          onPress={() => handleViewDetails(item.OrderCode)}
+          onPress={() => handleViewDetails(item.Id)}
           style={styles.button}
         >
           <Text style={styles.buttonText}>Xem Chi Tiết</Text>
@@ -91,7 +88,7 @@ const OrderScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Danh Sách Đơn Hàng</Text>
+      {/* <Text style={styles.title}>Danh Sách Đơn Hàng</Text> */}
 
       <FlatList
         data={orderList}

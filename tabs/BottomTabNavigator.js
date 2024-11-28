@@ -14,7 +14,7 @@ import OrderScreen from "../screens/OrderScreen/OrderScreen";
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
-  const userSelector = useSelector(getUserSelector);
+  // const userSelector = useSelector(getUserSelector);
   // const [image, setImage] = useState(userSelector.avatar_url);
 
   // useEffect(() => {
@@ -40,7 +40,10 @@ const BottomTabNavigator = () => {
         name="DeliveryHome"
         component={DeliveryHome}
         options={{
-          headerShown: false,
+          headerShown: true, // Ensure the header is shown
+          headerTitle: "Trang Chủ", // Custom header title
+          tabBarLabel: "Đơn Hàng",
+          headerTitleAlign: "center",
           tabBarLabel: "Trang Chủ",
           tabBarIcon: ({ color, size }) => (
             <Icon name={"home-outline"} color={color} size={size + 5} />
@@ -51,13 +54,15 @@ const BottomTabNavigator = () => {
         name="Order"
         component={OrderScreen}
         options={{
-          headerShown: false,
+          headerShown: true, // Ensure the header is shown
+          headerTitle: "Danh Sách Đơn Hàng", // Custom header title
           tabBarLabel: "Đơn Hàng",
+          headerTitleAlign: "center",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
               name="truck-delivery-outline"
-              size={24}
-              color="black"
+              size={size}
+              color={color}
             />
           ),
         }}
